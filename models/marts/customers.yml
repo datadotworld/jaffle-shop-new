@@ -32,8 +32,6 @@ models:
 
 semantic_models:
   - name: customers
-    defaults:
-      agg_time_dimension: first_ordered_at
     description: |
       Customer grain mart.
     model: ref('customers')
@@ -55,12 +53,15 @@ semantic_models:
       - name: count_lifetime_orders
         description: Total count of orders per customer.
         agg: sum
+        agg_time_dimension: first_ordered_at
       - name: lifetime_spend_pretax
         description: Customer lifetime spend before taxes.
         agg: sum
+        agg_time_dimension: first_ordered_at
       - name: lifetime_spend
         agg: sum
         description: Gross customer lifetime spend inclusive of taxes.
+        agg_time_dimension: first_ordered_at
 
 metrics:
   - name: lifetime_spend_pretax
